@@ -16,7 +16,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button a = (Button)this.findViewById(R.id.button1Obj);
         Button b = (Button)this.findViewById(R.id.button2Obj);
+
+        a.setOnClickListener( new View.OnClickListener(){
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+
+                // 建立 "選擇檔案 Action" 的 Intent
+                Intent intent = new Intent( Intent.ACTION_PICK );
+
+                // 過濾檔案格式
+                intent.setType( "image/*" );
+
+                // 建立 "檔案選擇器" 的 Intent (第二個參數: 選擇器的標題)
+                Intent destIntent = Intent.createChooser( intent, "選擇檔案" );
+
+                // 切換到檔案選擇器 (它的處理結果, 會觸發 onActivityResult 事件)
+                startActivityForResult( destIntent, 0 );
+            }
+        });
 
         b.setOnClickListener( new View.OnClickListener(){
             public void onClick(View arg0) {
