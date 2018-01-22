@@ -1,9 +1,14 @@
 package com.wilson.photoimage2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -62,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
 
+
+
         // 有選擇檔案
         if ( resultCode == RESULT_OK )
         {
@@ -74,6 +81,26 @@ public class MainActivity extends AppCompatActivity {
                 iv.setImageURI( uri );
 
                 setTitle( uri.toString() );
+
+               //
+                String path = getRealPathFromURI(this,uri);
+                String filename = path.substring(path.lastIndexOf("/")+1);
+                String file;
+                if (filename.indexOf(".") > 0) {
+                    file = filename.substring(0, filename.lastIndexOf("."));
+                } else {
+                    file =  filename;
+                }
+                Log.d("Real Path: ",path);
+                Log.d("Filename With Extension: ", filename);
+                Log.d("File Without Extension: ", file);
+               //
+
+                Log.d("PATH",Environment.getExternalStorageDirectory().getPath());
+                //Log.d("File",data.getData().
+                Log.d("Path",data.getData().getPath());
+                Log.d("Name",data.getData().getQueryParameterNames().toString());
+
             }
             else
             {
@@ -85,6 +112,23 @@ public class MainActivity extends AppCompatActivity {
             setTitle("取消選擇檔案 !!");
         }
     }
+//
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+//
+
     public void clickCamera(View v)
     {
         Log.d("DD","123");
@@ -93,4 +137,6 @@ public class MainActivity extends AppCompatActivity {
     {
         Log.d("DD","456");
     }
+
+
 }
