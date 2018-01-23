@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Log.d("Real Path: ",path);
 
-                imgpath=path;
-                Log.d("IMG Real Path: ",imgpath);
+                this.imgpath=path;
+                Log.d("IMG Real Path: ",this.imgpath);
 
                 Log.d("Filename With Extension: ", filename);
                 Log.d("File Without Extension: ", file);
@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickCamera(View v)
     {
-        Log.d("DD","123");
+        Log.d("DDDDDDDDDDD","clickCamera");
+        Log.d("DDDDDDDDDDDDDDDDDDD","clickCamera:"+this.imgpath);
     }
     public void clickImage(View v)
     {
