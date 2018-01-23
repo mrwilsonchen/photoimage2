@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public String imgpath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button a = (Button)this.findViewById(R.id.button1Obj);
         Button b = (Button)this.findViewById(R.id.button2Obj);
+
 
         a.setOnClickListener( new View.OnClickListener(){
             public void onClick(View arg0) {
@@ -95,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
                     file =  filename;
                 }
                 Log.d("Real Path: ",path);
+
+                imgpath=path;
+                Log.d("IMG Real Path: ",imgpath);
+
                 Log.d("Filename With Extension: ", filename);
                 Log.d("File Without Extension: ", file);
                //
