@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             if( uri != null )
             {
                 // 利用 Uri 顯示 ImageView 圖片
-                ImageView iv = (ImageView)this.findViewById(R.id.imageViewObj);
+                ImageView iv = (ImageView)this.findViewById(R.id.imageView);
                 iv.setImageURI( uri );
 
                 setTitle( uri.toString() );
@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickCamera(View v)
     {
+
         Log.d("DDDDDDDDDDD","clickCamera");
         Log.d("DDDDDDDDDDDDDDDDDDD","clickCamera:"+this.imgpath);
     }
