@@ -19,12 +19,13 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public String imgpath;
-
+    TextView tv2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TextView tv = (TextView)this.findViewById(R.id.textView);
+        tv2=(TextView)this.findViewById(R.id.textView2);
 
         Button a = (Button)this.findViewById(R.id.button1Obj);
         Button b = (Button)this.findViewById(R.id.button2Obj);
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             Uri uri = data.getData();
             if( uri != null )
             {
+
                 // 利用 Uri 顯示 ImageView 圖片
                 ImageView iv = (ImageView)this.findViewById(R.id.imageView);
                 iv.setImageURI( uri );
@@ -97,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     file =  filename;
                 }
-                Log.d("Real Path: ",path);
 
                 this.imgpath=path;
                 Log.d("IMG Real Path: ",this.imgpath);
@@ -105,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Filename With Extension: ", filename);
                 Log.d("File Without Extension: ", file);
                //
+                Log.d("Real Path: ",file);
+                this.tv2.setText(file);
 
                 Log.d("PATH",Environment.getExternalStorageDirectory().getPath());
                 //Log.d("File",data.getData().
